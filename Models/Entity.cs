@@ -2,7 +2,7 @@
 {
     public abstract class Entity
     {
-        public int Id { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public virtual int Id { get; set; }
+        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

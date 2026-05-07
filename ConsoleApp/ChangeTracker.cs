@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace ConsoleApp
@@ -129,6 +130,37 @@ namespace ConsoleApp
 
                 Console.WriteLine("----");
                 Console.WriteLine(context.ChangeTracker.DebugView.ShortView);
+            }
+        }
+
+        public static void RunProxies(DbContextOptionsBuilder<Context> config)
+        {
+            //włączenie proxy dla śledzenia zmian, dzięki temu nie musimy ręcznie wywoływać DetectChanges, ponieważ proxy automatycznie wykrywa zmiany i aktualizuje stan obiektów
+            config.UseChangeTrackingProxies();
+            using (var context = new Context(config.Options))
+            {
+                context.ChangeTracker.AutoDetectChangesEnabled = false;
+
+                /*var order = new Order()
+                {
+                    Name = "Zamówienie 3",
+                    Products = new List<Product>
+                    {
+                        new Product { Name = "Produkt 8" },
+                        new Product { Name = "Produkt 9" },
+                        new Product { Name = "Produkt 10" }
+                    }
+                };*/
+                //w przypadku używania proxy, nie możemy tworzyć obiektów za pomocą new, ponieważ nie będą one śledzone przez kontekst, musimy użyć metody CreateProxy, która tworzy obiekt proxy, który jest śledzony przez kontekst
+                var order = context.CreateProxy<Order>();
+                order.Name = "Zamówienie 3";
+                order.Products.Add(context.CreateProxy<Product>());
+                order.Products.Add(context.CreateProxy<Product>());
+                order.Products.ElementAt(0).Name = "Produkt 8";
+                order.Products.ElementAt(1).Name = "Produkt 9";
+
+                context.Add(order);
+                context.SaveChanges();
             }
         }
     }

@@ -15,4 +15,5 @@ using (var context = new Context(config.Options))
     context.Database.EnsureCreated();
 }
 
-ChangeTracker.Run(config);
+//ChangeTracker.Run(config);
+ChangeTracker.RunProxies(config);
