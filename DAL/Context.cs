@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Models;
 
 namespace DAL
 {
@@ -22,6 +23,16 @@ namespace DAL
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public override int SaveChanges()
+        {
+            ChangeTracker.Entries()
+                .Where(x => x.State == EntityState.Added || x.State == EntityState.Modified)
+                .ToList()
+                .ForEach(x => x.Property(nameof(Entity.CreatedDate)).IsModified = false);
+
+            return base.SaveChanges();
         }
     }
 }
