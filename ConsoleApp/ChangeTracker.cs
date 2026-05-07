@@ -163,5 +163,37 @@ namespace ConsoleApp
                 context.SaveChanges();
             }
         }
+
+        public static void RunNotifications(DbContextOptionsBuilder<Context> config)
+        {
+            using (var context = new Context(config.Options))
+            {
+                context.ChangeTracker.AutoDetectChangesEnabled = false;
+
+                var order = new Order { Name = "Zamówienie 4" };
+                order.OrderDate = DateTime.Now.AddDays(-4);
+                order.Products.Add(new Product { Name = "Produkt 11" });
+
+                context.Add(order);
+
+                Console.WriteLine("----");
+                Console.WriteLine(context.ChangeTracker.DebugView.LongView);
+
+                context.SaveChanges();
+
+                order.OrderDate = DateTime.Now.AddDays(-3);
+
+                Console.WriteLine("----");
+                Console.WriteLine(context.ChangeTracker.DebugView.LongView);
+
+                order.Name = "Zamówienie 4 - zmienione";
+
+                Console.WriteLine("----");
+                Console.WriteLine(context.ChangeTracker.DebugView.LongView);
+
+                context.SaveChanges();
+
+            }
+        }
     }
 }

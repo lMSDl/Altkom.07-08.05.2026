@@ -16,4 +16,5 @@ using (var context = new Context(config.Options))
 }
 
 //ChangeTracker.Run(config);
-ChangeTracker.RunProxies(config);
+//ChangeTracker.RunProxies(config);
+ChangeTracker.RunNotifications(config);
