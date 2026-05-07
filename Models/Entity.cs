@@ -6,6 +6,7 @@ namespace Models
     {
         public /*virtual*/ int Id { get; set; }
         //public /*virtual*/ DateTime CreatedDate { get; set; } = DateTime.Now;
+        public bool IsDeleted { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = "")
