@@ -27,8 +27,15 @@ namespace DAL
             base.OnModelCreating(modelBuilder);
         }
 
+        public bool RandomFailure { get; set; }
+
         public override int SaveChanges()
         {
+            if (RandomFailure && Random.Shared.Next(1, 25) == 1)
+            {
+                throw new Exception("Random failure");
+            }
+
             /*ChangeTracker.Entries()
                 .Where(x => x.State == EntityState.Added || x.State == EntityState.Modified)
                 .ToList()

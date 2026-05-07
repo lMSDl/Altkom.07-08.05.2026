@@ -1,8 +1,6 @@
-﻿
-
-
-using ConsoleApp;
+﻿using ConsoleApp;
 using DAL;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
@@ -20,4 +18,7 @@ using (var context = new Context(config.Options))
 //ChangeTracker.RunNotifications(config);
 //ConcurrencyCheck.Run(config);
 //ShadowProperty.Run(config);
-GlobalFilters.Run(config);
+//GlobalFilters.Run(config);
+
+Transactions.Run(config);
+

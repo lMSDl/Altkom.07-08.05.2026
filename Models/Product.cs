@@ -6,7 +6,7 @@ namespace Models
     {
         public /*virtual*/ string Name { get; set; } = string.Empty;
         public /*virtual*/ decimal Price { get; set; }
-        public /*virtual*/ Order Order { get; set; }
+        public /*virtual*/ Order? Order { get; set; }
 
         //odpowiednik IsRowVersion w fluent API
         //[Timestamp]
