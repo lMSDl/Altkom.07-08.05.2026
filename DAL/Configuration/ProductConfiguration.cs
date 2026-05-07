@@ -10,6 +10,7 @@ namespace DAL.Configuration
             base.Configure(builder);
 
             builder.HasOne(x => x.Order).WithMany(x => x.Products);
+            builder.Property(x => x.Timestamp).IsRowVersion();
         }
     }
 }

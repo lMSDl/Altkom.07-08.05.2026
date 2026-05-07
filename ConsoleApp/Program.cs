@@ -4,6 +4,7 @@
 using ConsoleApp;
 using DAL;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using Models;
 
 var config = new DbContextOptionsBuilder<Context>()
@@ -17,4 +18,10 @@ using (var context = new Context(config.Options))
 
 //ChangeTracker.Run(config);
 //ChangeTracker.RunProxies(config);
-ChangeTracker.RunNotifications(config);
+//ChangeTracker.RunNotifications(config);
+
+
+ConcurrencyCheck.Run(config);
+
+
+

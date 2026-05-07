@@ -1,9 +1,12 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
     public class Order : Entity
     {
+        //odpowiednik IsConcurrencyToken w fluent API
+        //[ConcurrencyCheck]
         public /*virtual*/ string Name
         {
             get => field;

@@ -22,7 +22,7 @@ namespace DAL
         {
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
             //włączamy tryb śledzenia zmian oparty na powiadomieniach o zmianach, co oznacza, że encje muszą implementować interfejs INotifyPropertyChanged i wywoływać metodę OnPropertyChanged w setterach właściwości, które chcemy śledzić
-            modelBuilder.HasChangeTrackingStrategy(ChangeTrackingStrategy.ChangedNotifications);
+            //modelBuilder.HasChangeTrackingStrategy(ChangeTrackingStrategy.ChangedNotifications);
 
             base.OnModelCreating(modelBuilder);
         }
