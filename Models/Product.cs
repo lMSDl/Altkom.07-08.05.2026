@@ -10,6 +10,6 @@ namespace Models
 
         //odpowiednik IsRowVersion w fluent API
         //[Timestamp]
-        public byte[] Timestamp { get; }
+        //public byte[] Timestamp { get; }
     }
 }

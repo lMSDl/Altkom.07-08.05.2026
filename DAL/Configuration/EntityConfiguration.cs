@@ -8,6 +8,10 @@ namespace DAL.Configuration
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
+            //tworzenie shadow property
+            //uzywamy wersji generycznej funkcji Property podając typ kolumny i nazwę kolumny + konfiguracja
+            //shadow property nie jest dostępne w modelu, ale jest dostępne w kontekście
+            builder.Property<DateTime>("CreatedDate").HasDefaultValueSql("GETDATE()");
         }
     }
 }

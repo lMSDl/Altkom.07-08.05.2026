@@ -123,7 +123,7 @@ namespace ConsoleApp
 
 
                 order.Name = "Zamówienie 2 - zmodyfikowane ponownie";
-                order.CreatedDate = DateTime.Now.AddDays(-2);
+                //order.CreatedDate = DateTime.Now.AddDays(-2);
                 context.SaveChanges();
 
                 context.ChangeTracker.Clear(); //odłącza wszystkie śledzone encje od kontekstu, zmienia ich stan na Detached, ale nie zmienia ich wartości
