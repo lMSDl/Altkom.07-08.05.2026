@@ -37,6 +37,11 @@ namespace DAL
             //włączamy tryb śledzenia zmian oparty na powiadomieniach o zmianach, co oznacza, że encje muszą implementować interfejs INotifyPropertyChanged i wywoływać metodę OnPropertyChanged w setterach właściwości, które chcemy śledzić
             //modelBuilder.HasChangeTrackingStrategy(ChangeTrackingStrategy.ChangedNotifications);
 
+            //możemy wpływać na sposób dostępu do właściwości w modelu, np. preferując dostęp przez właściwości zamiast pól
+            modelBuilder.UsePropertyAccessMode(PropertyAccessMode.PreferProperty);
+            //domyślne ustawienie to PropertyAccessMode.PreferFieldDuringConstruction, czyli dostęp przez pola podczas tworzenia obiektu, a potem przez właściwości
+            //modelBuilder.UsePropertyAccessMode(PropertyAccessMode.PreferFieldDuringConstruction);
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -1,6 +1,7 @@
 ﻿using ConsoleApp;
 using DAL;
 using Microsoft.EntityFrameworkCore;
+using Models;
 
 var config = new DbContextOptionsBuilder<Context>()
     .UseSqlServer("Server=(local);Database=EF;TrustServerCertificate=True;Integrated Security=true");
@@ -20,5 +21,6 @@ using (var context = new Context(config.Options))
 //Transactions.Run(config);
 //RelatedData.Run(config);
 //TemporalTable.Run(config);
+//CompileQuery.Run(config);
+BackingFields.Run(config);
 
-CompileQuery.Run(config);
