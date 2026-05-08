@@ -12,7 +12,9 @@ namespace ConsoleApp
             using (var context = new Context(config.Options))
             {
                 context.RandomFailure = randomFailure;
-                var products = Enumerable.Range(100, 50).Select(x => new Product { Name = $"Product {x}", Price = x * 10 }).ToArray();
+                var products = Enumerable.Range(100, 50).Select(x => new Product { Name = $"Product {x}", Price = x * 10,
+                    Details = new ProductDetails { Weight = x * 0.1f, Depth = x * 0.2f, Height = x * 0.3f, Width = x * 0.4f }
+                }).ToArray();
                 var orders = Enumerable.Range(1, 5).Select(x => new Order
                 {
                     OrderDate = DateTime.Now.AddDays(-x),

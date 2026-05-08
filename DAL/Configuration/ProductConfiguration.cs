@@ -11,7 +11,9 @@ namespace DAL.Configuration
 
             builder.HasOne(x => x.Order).WithMany(x => x.Products);
             //builder.Property(x => x.Timestamp).IsRowVersion();
-            builder.Property<byte[]>("Timestamp").IsRowVersion();
+            //builder.Property<byte[]>("Timestamp").IsRowVersion();
+
+            builder.HasOne(x => x.Details).WithOne().HasForeignKey<ProductDetails>(x => x.Id);
         }
     }
 }

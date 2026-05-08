@@ -50,5 +50,12 @@ namespace Models
         //odpowiednik IsRowVersion w fluent API
         //[Timestamp]
         //public byte[] Timestamp { get; }
+
+
+        /*public float Weight { get; set; }
+        public float Height { get; set; }
+        public float Width { get; set; }
+        public float Depth { get; set; }*/
+        public ProductDetails Details { get; set; } = new ProductDetails();
     }
 }
