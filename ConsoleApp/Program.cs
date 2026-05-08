@@ -24,13 +24,6 @@ using (var context = new Context(config.Options))
 //CompileQuery.Run(config);
 //BackingFields.Run(config);
 //ComputedColumns.Run(config);
+//SplitTable.Run(config);
 
-
-Converters.Run(config);
-
-using (var context = new Context(config.Options))
-{
-    var products = context.Set<Product>().ToArray();
-    context.Set<ProductDetails>().Load();
-
-}
+Views.Run(config);
