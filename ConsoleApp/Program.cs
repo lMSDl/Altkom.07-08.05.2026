@@ -26,5 +26,6 @@ using (var context = new Context(config.Options))
 //ComputedColumns.Run(config);
 //SplitTable.Run(config);
 //Views.Run(config);
+//Spatial.Run(config);
 
-Spatial.Run(config);
+Json.Run(config);

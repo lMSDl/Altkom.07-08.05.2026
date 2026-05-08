@@ -22,10 +22,15 @@ namespace DAL.Configuration
                 x.HasPeriodEnd("PeriodEnd");
             }));
 
-            builder.HasOne(x => x.Address).WithMany();
             builder.Ignore(x => x.FirstNameLength);
 
             builder.Property(x => x.OptionalDescription).IsSparse();
+
+            builder.OwnsOne(x => x.Address, navigationBuilder =>
+            {
+                navigationBuilder.ToJson();
+                navigationBuilder.OwnsOne(x => x.Coordinates);
+            });
         }
     }
 }
