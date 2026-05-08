@@ -19,6 +19,6 @@ using (var context = new Context(config.Options))
 //ConcurrencyCheck.Run(config);
 //ShadowProperty.Run(config);
 //GlobalFilters.Run(config);
+//Transactions.Run(config);
 
-Transactions.Run(config);
-
+RelatedData.Run(config);

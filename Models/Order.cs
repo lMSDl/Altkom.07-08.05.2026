@@ -17,6 +17,6 @@ namespace Models
             }
         } = string.Empty;
         public /*virtual*/ DateTime OrderDate { get; set; } = DateTime.Now;
-        public /*virtual*/ ICollection<Product> Products { get; set; } = new ObservableCollection<Product>();
+        public virtual ICollection<Product> Products { get; set; } = new ObservableCollection<Product>();
     }
 }

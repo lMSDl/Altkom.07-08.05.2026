@@ -7,12 +7,11 @@ namespace ConsoleApp
 {
     internal class Transactions
     {
-        public static void Run(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder<Context> config)
+        public static void Run(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder<Context> config, bool randomFailure = true)
         {
             using (var context = new Context(config.Options))
             {
-                context.RandomFailure = true;
-
+                context.RandomFailure = randomFailure;
                 var products = Enumerable.Range(100, 50).Select(x => new Product { Name = $"Product {x}", Price = x * 10 }).ToArray();
                 var orders = Enumerable.Range(1, 5).Select(x => new Order { OrderDate = DateTime.Now.AddDays(-x), Name = $"Order {x}" }).ToArray();
 
@@ -57,7 +56,7 @@ namespace ConsoleApp
                             transaction.RollbackToSavepoint(savePoint); //cofamy zmiany dokonane od momentu utworzenia savepointa
                         }
 
-                        if (Random.Shared.Next(1, 10) == 1)
+                        if (context.RandomFailure && Random.Shared.Next(1, 10) == 1)
                         {
                             throw new Exception("BIG random failure");
                         }
