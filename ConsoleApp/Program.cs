@@ -9,7 +9,7 @@ var config = new DbContextOptionsBuilder<Context>()
 using (var context = new Context(config.Options))
 {
     context.Database.EnsureDeleted();
-    context.Database.EnsureCreated();
+    context.Database.Migrate();
 }
 
 //ChangeTracker.Run(config);
