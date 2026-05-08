@@ -17,6 +17,7 @@ namespace ConsoleApp
                 Thread.Sleep(2500);
 
                 person.FirstName = "Jane";
+                person.Address = new Address { City = "New York", Street = "123 Main St", PostalCode = "10001" };
                 context.SaveChanges();
 
                 Thread.Sleep(2500);
@@ -28,6 +29,7 @@ namespace ConsoleApp
 
                 person.FirstName = "Jack";
                 person.LastName = "Johnson";
+                person.Address = new Address { City = "Los Angeles", Street = "456 Elm St", PostalCode = "90001" };
                 context.SaveChanges();
 
                 context.ChangeTracker.Clear();
@@ -43,6 +45,8 @@ namespace ConsoleApp
                 Console.WriteLine($"Stan sprzed 5s: {person.FirstName} {person.LastName}");
 
                 var history = context.Set<Person>().TemporalBetween(DateTime.UtcNow.AddSeconds(-10), DateTime.UtcNow.AddSeconds(-2)).ToArray();
+
+                person = context.Set<Person>().TemporalAsOf(DateTime.UtcNow.AddSeconds(-3)).First();
             }
         }
     }

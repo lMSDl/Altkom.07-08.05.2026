@@ -21,6 +21,8 @@ namespace DAL.Configuration
                 x.HasPeriodStart("PeriodStart");
                 x.HasPeriodEnd("PeriodEnd");
             }));
+
+            builder.HasOne(x => x.Address).WithMany();
         }
     }
 }
