@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Models;
 
 namespace DAL.Configuration
@@ -10,6 +11,15 @@ namespace DAL.Configuration
             base.Configure(builder);
 
             builder.Property(x => x.Name).IsConcurrencyToken();
+
+            //Computed column = kolumna wyliczana
+            //stored: true - wartość jest przechowywana w bazie danych, a nie wyliczana przy każdym odczycie
+            builder.Property(x => x.TotalValue).HasComputedColumnSql("[Value] * (1 + [Tax])", stored: true);
+            //nie każda kolumna wyliczana może mieć flagę stored: true
+            //aby było to możliwe dane muszą być deterministyczne, czyli zawsze zwracać ten sam wynik dla tych samych danych wejściowych
+            builder.Property<DateTime>("CurrentDate").HasComputedColumnSql("GETDATE()");
+
+            builder.Property(x => x.IsExpired).HasComputedColumnSql("CASE WHEN [OrderDate] < GETDATE() THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END");
         }
     }
 }
