@@ -10,6 +10,19 @@ namespace DAL
         public Context(DbContextOptions<Context> options) : base(options) { }
 
 
+
+        public static Func<Context, int, Product> GetProductsByDateTime { get; } =
+            EF.CompileQuery((Context context, int days) =>
+                context.Set<Product>()
+                    .Include(x => x.Order)
+                    .ThenInclude(x => x.Products)
+                    .Where(x => x.Id % 2 == 0)
+                    .Where(x => x.Order.Id % 3 == 0)
+                    .Where(x => x.Order.OrderDate < DateTime.Now.AddDays(days))
+                    .OrderByDescending(x => x.Order.OrderDate)
+                    .First());
+
+
         override protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

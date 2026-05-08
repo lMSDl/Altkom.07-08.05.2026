@@ -1,8 +1,6 @@
 ﻿using ConsoleApp;
 using DAL;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Models;
 
 var config = new DbContextOptionsBuilder<Context>()
     .UseSqlServer("Server=(local);Database=EF;TrustServerCertificate=True;Integrated Security=true");
@@ -21,5 +19,6 @@ using (var context = new Context(config.Options))
 //GlobalFilters.Run(config);
 //Transactions.Run(config);
 //RelatedData.Run(config);
+//TemporalTable.Run(config);
 
-TemporalTable.Run(config);
+CompileQuery.Run(config);
