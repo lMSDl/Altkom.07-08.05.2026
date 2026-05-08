@@ -1,7 +1,6 @@
 ﻿using ConsoleApp;
 using DAL;
 using Microsoft.EntityFrameworkCore;
-using Models;
 
 var config = new DbContextOptionsBuilder<Context>()
     .UseSqlServer("Server=(local);Database=EF;TrustServerCertificate=True;Integrated Security=true");

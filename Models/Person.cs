@@ -20,5 +20,7 @@
         public Address? Address { get; set; }
 
         public int FirstNameLength { get; private set; }
+    
+        public string? OptionalDescription { get; set; }
     }
 }

@@ -24,6 +24,8 @@ namespace DAL.Configuration
 
             builder.HasOne(x => x.Address).WithMany();
             builder.Ignore(x => x.FirstNameLength);
+
+            builder.Property(x => x.OptionalDescription).IsSparse();
         }
     }
 }
