@@ -13,7 +13,13 @@ namespace ConsoleApp
             {
                 context.RandomFailure = randomFailure;
                 var products = Enumerable.Range(100, 50).Select(x => new Product { Name = $"Product {x}", Price = x * 10 }).ToArray();
-                var orders = Enumerable.Range(1, 5).Select(x => new Order { OrderDate = DateTime.Now.AddDays(-x), Name = $"Order {x}" }).ToArray();
+                var orders = Enumerable.Range(1, 5).Select(x => new Order
+                {
+                    OrderDate = DateTime.Now.AddDays(-x),
+                    Name = $"Order {x}",
+                    Type = (OrderType)(x % Enum.GetValues<OrderType>().Length),
+                    Parameters = (OrderParameters)((x * x) % 31)
+                }).ToArray();
 
                 //tworzymy transakcję
                 //jeśli na kontekście została otwarta transakcja, to po wykonaniu operacji zapisu MUSI zostać wywołana metoda Commit - w przeciwny razie zmiany zostaną wycofane, a baza danych pozostanie w stanie sprzed rozpoczęcia transakcji

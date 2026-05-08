@@ -23,5 +23,7 @@ using (var context = new Context(config.Options))
 //TemporalTable.Run(config);
 //CompileQuery.Run(config);
 //BackingFields.Run(config);
+//ComputedColumns.Run(config);
 
-ComputedColumns.Run(config);
+
+Converters.Run(config);
