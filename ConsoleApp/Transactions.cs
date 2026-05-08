@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using NetTopologySuite.Geometries;
 
 namespace ConsoleApp
 {
@@ -20,7 +21,8 @@ namespace ConsoleApp
                     OrderDate = DateTime.Now.AddDays(-x),
                     Name = $"Order {x}",
                     Type = (OrderType)(x % Enum.GetValues<OrderType>().Length),
-                    Parameters = (OrderParameters)((x * x) % 31)
+                    Parameters = (OrderParameters)((x * x) % 31),
+                    DeliveryPoint = new Point (51 + 0.1 * x, 19 - x * 0.1) { SRID = 4326},
                 }).ToArray();
 
                 //tworzymy transakcję

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 
 var config = new DbContextOptionsBuilder<Context>()
-    .UseSqlServer("Server=(local);Database=EF;TrustServerCertificate=True;Integrated Security=true");
+    .UseSqlServer("Server=(local);Database=EF;TrustServerCertificate=True;Integrated Security=true", x => x.UseNetTopologySuite());
 
 using (var context = new Context(config.Options))
 {
@@ -25,5 +25,6 @@ using (var context = new Context(config.Options))
 //BackingFields.Run(config);
 //ComputedColumns.Run(config);
 //SplitTable.Run(config);
+//Views.Run(config);
 
-Views.Run(config);
+Spatial.Run(config);
